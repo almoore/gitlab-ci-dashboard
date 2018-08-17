@@ -28,6 +28,13 @@ export const getProjects = (nameWithNamespace) => {
   return fitch.preparedGet(`/projects/${nameWithNamespace.replace(/\//g, '%2F')}`)
 }
 
+export const getBranches = (projectId) => {
+  if (projectId == null) {
+    return Promise.reject(new Error('projectId is empty'))
+  }
+  return fitch.preparedGet(`/projects/${projectId}/repository/branches`)
+}
+
 export const getBranch = (projectId, branchName) => {
   if (projectId == null || branchName == null) {
     return Promise.reject(new Error('projectId or branchName are empty'))
