@@ -96,6 +96,7 @@ var root = new Vue({
     }
   },
   created () {
+    // console.log("Getting config");
     this.loadConfig().then(() => {
       if (this.standalone) {
         getStandaloneParams(window.location.origin).then((params) => {
@@ -118,6 +119,7 @@ var root = new Vue({
   },
   methods: {
     loadConfig () {
+      console.log("Loading config");
       this.configFile = getParameterByName('config')
       return getConfigFromFile(this.configFile)
         .then(({config, projects}) => {
@@ -421,7 +423,7 @@ var root = new Vue({
       if (!selectedProject) {
         return
       }
-      const {
+      let {
         repo,
         project
       } = selectedProject
